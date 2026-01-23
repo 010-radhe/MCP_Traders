@@ -23,6 +23,8 @@ with sqlite3.connect(DB) as conn:
     cursor.execute('CREATE TABLE IF NOT EXISTS market (date TEXT PRIMARY KEY, data TEXT)')
     conn.commit()
 
+# Save or update an account - converts dict to JSON and stores it
+# Uses UPSERT: inserts new account or updates existing one if name already exists
 def write_account(name, account_dict):
     json_data = json.dumps(account_dict)
     with sqlite3.connect(DB) as conn:
@@ -34,6 +36,7 @@ def write_account(name, account_dict):
         ''', (name.lower(), json_data))
         conn.commit()
 
+# Retrieve an account by name - returns dict if found, None if not
 def read_account(name):
     with sqlite3.connect(DB) as conn:
         cursor = conn.cursor()
@@ -41,6 +44,7 @@ def read_account(name):
         row = cursor.fetchone()
         return json.loads(row[0]) if row else None
     
+# Add a new log entry with timestamp - logs are append-only (never updated)
 def write_log(name: str, type: str, message: str):
     """
     Write a log entry to the logs table.
@@ -60,6 +64,7 @@ def write_log(name: str, type: str, message: str):
         ''', (name.lower(), type, message))
         conn.commit()
 
+# Get the last N log entries for a user - returns in chronological order (oldest first)
 def read_log(name: str, last_n=10):
     """
     Read the most recent log entries for a given name.
@@ -82,6 +87,7 @@ def read_log(name: str, last_n=10):
         
         return reversed(cursor.fetchall())
 
+# Save or update market data for a specific date - uses UPSERT
 def write_market(date: str, data: dict) -> None:
     data_json = json.dumps(data)
     with sqlite3.connect(DB) as conn:
@@ -93,6 +99,7 @@ def write_market(date: str, data: dict) -> None:
         ''', (date, data_json))
         conn.commit()
 
+# Retrieve market data for a specific date - returns dict if found, None if not
 def read_market(date: str) -> dict | None:
     with sqlite3.connect(DB) as conn:
         cursor = conn.cursor()
