@@ -11,11 +11,17 @@
 
 <br/>
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Hugging_Face_Spaces-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/spaces/aniket81/MCP_Traders)
+
+### [Try the Live Application](https://huggingface.co/spaces/aniket81/MCP_Traders)
+
+<br/>
+
 *A sophisticated multi-agent trading simulation platform featuring four autonomous AI traders, each embodying distinct investment philosophies inspired by legendary investors.*
 
 <br/>
 
-[Features](#features) | [Architecture](#architecture) | [Installation](#installation) | [Configuration](#configuration) | [Usage](#usage) | [API Reference](#api-reference)
+[Live Demo](https://huggingface.co/spaces/aniket81/MCP_Traders) | [Features](#features) | [Architecture](#architecture) | [Installation](#installation) | [Configuration](#configuration) | [Usage](#usage)
 
 ---
 
