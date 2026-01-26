@@ -30,10 +30,10 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 MAX_TURNS = 30
 
-openrouter_client = AsyncOpenAI(base_url=OPENROUTER_BASE_URL, api_key=openrouter_api_key)
-deepseek_client = AsyncOpenAI(base_url=DEEPSEEK_BASE_URL, api_key=deepseek_api_key)
-grok_client = AsyncOpenAI(base_url=GROK_BASE_URL, api_key=grok_api_key)
-gemini_client = AsyncOpenAI(base_url=GEMINI_BASE_URL, api_key=google_api_key)
+openrouter_client = AsyncOpenAI(base_url=OPENROUTER_BASE_URL, api_key=openrouter_api_key) if openrouter_api_key else None
+deepseek_client = AsyncOpenAI(base_url=DEEPSEEK_BASE_URL, api_key=deepseek_api_key) if deepseek_api_key else None
+grok_client = AsyncOpenAI(base_url=GROK_BASE_URL, api_key=grok_api_key) if grok_api_key else None
+gemini_client = AsyncOpenAI(base_url=GEMINI_BASE_URL, api_key=google_api_key) if google_api_key else None
 
 
 def get_model(model_name: str):
